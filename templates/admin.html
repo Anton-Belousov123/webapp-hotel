@@ -1,0 +1,65 @@
+{% extends "admin_panel_base.html" %}
+{% block title %}Админ панель{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class="display-5 m-4">
+        <a class="card" href="/admin" style="text-decoration: none;">
+        <mark>Админ панель</mark>
+        </a>
+    </h1>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <a href="/admin?page=main" style="text-decoration: none; color: black;">
+                <div class="card mt-4">
+                    <img src="https://gillde.com/wp-content/uploads/2022/06/29-1160x870.webp"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Главная страница</h5>
+                        <p class="card-text">Вы можете добавлять новые карточки</p>
+                    </div>
+                </div>
+            </a>
+            </div>
+        <div class="col-md-3">
+            <a href="/admin?page=section" style="text-decoration: none; color: black;">
+                <div class="card mt-4">
+                    <img src="https://i.pinimg.com/originals/fc/2d/0e/fc2d0eafd2f7de02eeae4216e5693fa1.jpg"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Страница раздела</h5>
+                        <p class="card-text">Вы можете редактировать текущие элементы</p>
+                    </div>
+                </div>
+            </a>
+            </div>
+        <div class="col-md-3">
+            <a href="/admin?page=service" style="text-decoration: none; color: black;">
+                <div class="card mt-4">
+                    <img src="https://cdn.dribbble.com/users/1615584/screenshots/15543862/media/d42dff0989657d431d2e1dd218c46582.jpg?compress=1&resize=400x300&vertical=top"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Страница услуги</h5>
+                        <p class="card-text">Вы можете удалять то что вам не нужно</p>
+                    </div>
+                </div>
+            </a>
+            </div>
+        <div class="col-md-3 mb-5">
+            <a href="/admin?page=menu" style="text-decoration: none; color: black;">
+                <div class="card mt-4">
+                    <img src="https://i.pinimg.com/originals/d2/a8/3a/d2a83a45ceb14d7eaa1acef93fe1ba8b.png"
+                         class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Страница меню</h5>
+                        <p class="card-text">Вы можете заменить название и ссылку</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
