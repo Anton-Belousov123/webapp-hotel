@@ -13,15 +13,34 @@
     <title>CRM {% block title %}{% endblock %}</title>
     <style>
         body {
-            background: url('../static/images/fon.jpeg');
+            background: url('../../static/images/fon.jpeg');
+        }
+
+        .card {
+            transition: transform 0.2s;
+        }
+
+        .card:hover  {
+            transform: scale(1.05);
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     {% endblock %}
 </head>
 <body>
-<div id="content">{% block content %}
-    {% endblock %}</div>
+<div id="content">{% block content %}{% endblock %}</div>
 
+<div class="mt-5">
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-bottom mt-5">
+        <div class="container">
+            <div>
+                <a class="navbar-text" href="/static">Перейти на главную</a>
+            </div>
+            <div class="navbar-text">
+                Developed By <a href="https://t.me/ya_prosto_ystal">Oleg Pashchenko</a>
+            </div>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

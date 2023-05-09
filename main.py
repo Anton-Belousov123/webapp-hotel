@@ -5,14 +5,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index_page():
-    return render_template('index.html')
+    heading = 'Мир безупречного комфорта'
+    sections = [
+        {'name': 'Питание в отеле'},
+        {'name': 'Массаж и СПА'},
+        {'name': 'Трансфер'},
+        {'name': 'Товары для вас'}
+    ]
+    return render_template('pages/main_page.html', sections=sections, heading=heading)
 
 
 @app.route('/section/<section>')
 def section_page(section):
-    if not is_html_file_exists(f'templates/sections/{section}.html'):
-        return render_template('404.html')
-    return render_template(f'sections/{section}.html')
+    return render_template(f'pages/section_page.html')
 
 
 @app.route('/service/<service>')

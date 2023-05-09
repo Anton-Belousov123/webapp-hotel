@@ -1,0 +1,24 @@
+{% extends "pages/base.html" %}
+{% block title %}Редактирование главной{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <br/>
+    <div class="mt-3">
+        <p>{{ heading }}</p>
+    </div>
+
+    <div class="row">
+        {% for section in sections %}
+        <div class="col mt-3">
+            <div class="card">
+                <img src="https://img.freepik.com/premium-vector/cartoon-storage-room-with-boxes-and-loader-illustration_264840-146.jpg"
+                     class="rounded mx-auto d-block" style="height: 100px; width: 140px">
+                <p class="card-title m-1">{{ section['name'] }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
