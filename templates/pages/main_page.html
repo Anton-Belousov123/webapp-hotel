@@ -21,4 +21,11 @@
         {% endfor %}
     </div>
 </div>
+<script>
+    let tg = window.Telegram.WebApp;
+    let data = {
+        name: "Это тестовое сообщение"
+    }
+    tg.sendData(JSON.stringify(data))
+</script>
 {% endblock %}

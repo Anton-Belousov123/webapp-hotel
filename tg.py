@@ -8,10 +8,10 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup()
-    keyboard.add(types.KeyboardButton('Открыть веб страницу', web_app=WebAppInfo(url='https://94.198.218.2:5000/')))
+    keyboard.add(types.KeyboardButton('Открыть веб страницу', web_app=WebAppInfo(url='https://hotel-bot.site/')))
     await message.answer('Привет мой друг!', reply_markup=keyboard)
 
-@dp.message_handler()
+@dp.message_handler(content_types=['web_app_data'])
 async def web_app(message: types.Message):
     print('yes')
 
