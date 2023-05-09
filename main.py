@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request
 from utils import is_html_file_exists
+from OpenSSL import SSL
+context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
+context.use_privatekey_file('server.key')
+context.use_certificate_file('server.crt')
+
+
 app = Flask(__name__)
 
 
@@ -45,4 +51,4 @@ def admin_page():
 
 
 
-app.run(debug=True, host='0.0.0.0', port='8000')
+app.run(debug=True, host='0.0.0.0', port='5000')
