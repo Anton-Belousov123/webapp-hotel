@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
 from utils import is_html_file_exists
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/')
+@application.route('/')
 def index_page():
     heading = 'Мир безупречного комфорта'
     sections = [
@@ -16,19 +16,19 @@ def index_page():
     return render_template('pages/main_page.html', sections=sections, heading=heading)
 
 
-@app.route('/section/<section>')
+@application.route('/section/<section>')
 def section_page(section):
     return render_template(f'pages/section_page.html')
 
 
-@app.route('/service/<service>')
+@application.route('/service/<service>')
 def service_page(service):
     if not is_html_file_exists(f'templates/services/{service}.html'):
         return render_template('404.html')
     return render_template(f'services/{service}.html')
 
 
-@app.route('/admin', methods=['GET', 'POST'])
+@application.route('/admin', methods=['GET', 'POST'])
 def admin_page():
     if request.method == 'GET':
         args = request.args.to_dict()
@@ -45,4 +45,4 @@ def admin_page():
     print(request.form.to_dict())
 
 
-app.run(debug=True, host='0.0.0.0', port='5000', ssl_context='adhoc')
+application.run(host='0.0.0.0')
