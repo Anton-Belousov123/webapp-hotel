@@ -8,7 +8,7 @@ from utils import is_html_file_exists
 application = Flask(__name__)
 
 
-@application.route('/')
+@application.route('/', methods=['GET', 'POST'])
 def index_page():
     try:
         query_id = str(request.form.to_dict()['query_id'])
