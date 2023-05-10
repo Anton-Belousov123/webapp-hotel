@@ -20,7 +20,9 @@
     <div class="mt-3">
         <p>{{ heading }}</p>
     </div>
-    <button onclick="window.location.href='https://google.com'">Перенаправить</button>
+    <form action="/section/{{ section['id'] }}?{{ query_id }}" method="POST">
+    <button type="submit">Перенаправить</button>
+        </form>
     <div class="row">
         {% for section in sections %}
         <div class="col mt-3">

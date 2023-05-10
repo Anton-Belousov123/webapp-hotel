@@ -30,12 +30,13 @@ def order_handler():
     return 'ok'
 
 
-@application.route('/section/<section>')
+@application.route('/section/<section>', methods=['POST'])
 def section_page(section):
     try:
         query_id = list(request.args.keys())[0]
     except:
         query_id = ''
+    return f"OK {query_id}"
     pages = json.load(open('pages.json'))['items']
     for page in pages:
         if str(page['id']) == str(section):
