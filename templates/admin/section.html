@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "admin/admin_panel_base.html" %}
+{% block title %}Редактирование главной{% endblock %}
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <h1 class="display-5 m-4">
+        <a class="card" href="/admin" style="text-decoration: none;">
+        <mark>Управление страницей разделов</mark>
+            </a>
+    </h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mt-3 mb-4">
+                <img src="https://gillde.com/wp-content/uploads/2022/06/29-1160x870.webp" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"><mark>Cоздать новую</mark></h5>
+                    <p class="card-text">Создание новой карточки</p>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-sm btn-outline-primary"  data-bs-toggle="modal"
+                                data-bs-target="#createMainModal">
+                            <i class="bi bi-trash"></i> Создать
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for page in pages %}
+        <div class="col-md-3">
+            <div class="card mt-3 mb-4">
+                <img src="{{ page['image'] }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"><mark>{{page['title']}}</mark></h5>
+                    <p class="card-text">
+                        <p>{{ page['worked_at'] }}</p>
+                        <p>{{ page['description'] }}</p>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal"
+                                data-bs-target="#editMainModal{{ page['id'] }}">
+                            <i class="bi bi-pencil"></i> Редактировать
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ page['id'] }}">
+                            <i class="bi bi-trash"></i> Удалить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include "modals_section.html" %}
+        <!-- Редактирование -->
+        {% endfor %}
+    </div>
+    <div class="modal fade" id="createMainModal" tabindex="-1"
+     aria-labelledby="createMainModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createMainModalLabel">Создать карточку</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/admin">
+                    <input hidden="true" name="method" value="create-section"></input>
+                    <div class="mb-3">
+                        <label for="title123" class="form-label">Привязать к:</label>
+                        <select id="title123" name="connected_with" class="form-select">
+                            {% for i in titles['items'] %}
+                                <option value ="{{i['id']}}">{{i['title']}}</option>
+                            {% endfor %}
+            </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title1" class="form-label">Ссылка на фото:</label>
+                        <input type="text" class="form-control" id="title1" name="photo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title2" class="form-label">Название:</label>
+                        <input type="text" class="form-control" id="title2" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title222" class="form-label">Работает:</label>
+                        <input type="text" class="form-control" id="title222" name="worked_at">
+                    </div>
+                    <div class="mb-3">
+                        <label for="text3" class="form-label">Описание:</label>
+                        <textarea class="form-control" id="text3" name="description"
+                                  rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </form>
+            </div>
 
-</body>
-</html>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+</div>

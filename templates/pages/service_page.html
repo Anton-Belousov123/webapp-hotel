@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "pages/base.html" %}
+{% block title %}Услуги{% endblock %}
+{% block content %}
 
-</body>
-</html>
+
+<div class="container">
+    <br/>
+    <div class="row">
+        {% for item in items %}
+        <div class="card flex-row mt-3 p-0">
+            <img style="width: 170px"
+                 class="rounded float-left"
+                 src="{{ item['image'] }}"/>
+            <div class="card-body">
+                <form method="post" action="/order">
+                    <input hidden="true" name="query_id" value="{{query_id}}"></input>
+                    <input hidden="true" name="title" value="{{item['title']}}"></input>
+                    <input hidden="true" name="description" value="{{item['description']}}"></input>
+                    <input hidden="true" name="price" value="{{item['price']}}"></input>
+                    <h6 class="card-title h4-sm" name="title{{item['id']}}">{{ item['title'] }}</h6>
+                    <p class="card-text black-color m-0" name="description{{item['id']}}">{{ item['description'] }}</p>
+                    <p class="orange-color m-1" style="font-weight: bold" name="price{{item['id']}}"> Цена: {{ item['price'] }} </p>
+                    <button type="submit" class="btn btn-primary mt-1">Заказать</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

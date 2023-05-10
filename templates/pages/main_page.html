@@ -1,5 +1,17 @@
+<script>
+    console.log('Success');
+
+    let tg = window.Telegram.WebApp;
+    let query_id;
+    try {
+        query_id = tg.initDataUnsafe.query_id;
+    } catch (error) {
+        console.log('Error:', error);
+        query_id = 'Test Mode';
+    }
+</script>
 {% extends "pages/base.html" %}
-{% block title %}Редактирование главной{% endblock %}
+{% block title %}Главная страница{% endblock %}
 {% block content %}
 
 
@@ -12,20 +24,16 @@
     <div class="row">
         {% for section in sections %}
         <div class="col mt-3">
-            <div class="card">
-                <img src="https://img.freepik.com/premium-vector/cartoon-storage-room-with-boxes-and-loader-illustration_264840-146.jpg"
-                     class="rounded mx-auto d-block" style="height: 100px; width: 140px">
-                <p class="card-title m-1">{{ section['name'] }}</p>
-            </div>
+            <a href="/section/{{ section['id'] }}?{{ query_id }}">
+                <div class="card">
+                    <img src="{{ section['image'] }}"
+                         class="rounded mx-auto d-block" style="height: 100px; width: 140px">
+                    <p class="card-title m-1">{{ section['title'] }}</p>
+                </div>
+            </a>
         </div>
         {% endfor %}
     </div>
 </div>
-<script>
-    let tg = window.Telegram.WebApp;
-    let data = {
-        name: "Это тестовое сообщение"
-    }
-    tg.sendData(JSON.stringify(data))
-</script>
+
 {% endblock %}

@@ -1,22 +1,24 @@
 {% extends "pages/base.html" %}
-{% block title %}Редактирование главной{% endblock %}
+{% block title %}Разделы{% endblock %}
 {% block content %}
 
 
 <div class="container">
     <br/>
-
     <div class="row">
-        {% for section in sections %}
-        <div class="col mt-3">
-            <div class="card">
-                <img src="https://img.freepik.com/premium-vector/cartoon-storage-room-with-boxes-and-loader-illustration_264840-146.jpg"
-                     class="rounded mx-auto d-block" style="height: 100px; width: 140px">
-                <p class="card-title m-1">{{ section['name'] }}</p>
-                <p class="card-title m-1">{{ section['name'] }}</p>
-                <p class="card-title m-1">{{ section['name'] }}</p>
+        {% for service in services %}
+        <a href="/service/{{ service['id'] }}?{{query_id}}">
+            <div class="card flex-row mt-3 p-0">
+                <img style="width: 130px"
+                     class="rounded float-left"
+                     src="{{ service['image'] }}"/>
+                <div class="card-body">
+                    <h6 class="card-title h4-sm">{{ service['title'] }}</h6>
+                    <p class="black-color" style="font-weight: bold"> {{ service['worked_at'] }} </p>
+                    <p class="card-text black-color">{{ service['description'] }}</p>
+                </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
     </div>
 </div>
