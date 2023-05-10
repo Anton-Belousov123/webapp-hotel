@@ -25,16 +25,14 @@
         {% endfor %}
     </div>
 </div>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
     console.log('Success');
 
     alert("YES");
     let tg = window.Telegram.WebApp;
 
-    alert(tg);
-    {% set query_id = tg.initDataUnsafe.query_id %}
-    alert(tg.initDataUnsafe.query_id);
-    alert("{{query_id}}");
+    alert(tg.initData);
+    //alert(tg.initDataUnsafe.query_id);
+    //alert("{{query_id}}");
 </script>
 {% endblock %}
