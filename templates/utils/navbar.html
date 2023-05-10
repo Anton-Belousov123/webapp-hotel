@@ -13,14 +13,15 @@
             <li class="nav-item active">
                 <form action="/" method="POST" id="navfm">
                     <input name="query_id" hidden="true">
-                    <a class="nav-link" href="#" onclick="document.getElementById('navfm').submit();">Главная</span></a>
-                    </form>
+                    <a class="nav-link" href="#" onclick="document.getElementById('navfm').submit();"><span>Главная</span></a>
+                </form>
             </li>
             {% for title in titles %}
             <li class="nav-item">
-                <form action="/section/{{title['id']}}" method="POST" id="navfm{{title['id']}}">
+                <form action="/section/{{title['id']}}" method="POST" id="smt">
                     <input name="query_id" hidden="true">
-                <a class="nav-link" href="#" onclick="document.getElementById('navfm{{title['id']}}').submit();>{{title['title']}}</a>
+                    <a class="nav-link" href="#" onclick="document.getElementById('smt').submit();"><span>{{title['title']}}</span></a>
+                </form>
             </li>
             {% endfor %}
         </ul>

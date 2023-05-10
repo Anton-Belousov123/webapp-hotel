@@ -12,5 +12,9 @@ async def start_command(message: types.Message):
     await message.answer('Привет мой друг!', reply_markup=keyboard)
 
 
+@dp.message_handler()
+async def gr(message: types.Message):
+    print(message)
+
 executor.start_polling(dp)
 
