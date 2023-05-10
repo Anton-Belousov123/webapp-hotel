@@ -33,7 +33,7 @@ def order_handler():
 @application.route('/section/<section>', methods=['POST'])
 def section_page(section):
     try:
-        query_id = list(request.args.keys())[0]
+        query_id = request.form.to_dict()['query_id']
     except:
         query_id = ''
     return query_id
