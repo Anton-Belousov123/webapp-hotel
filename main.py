@@ -36,7 +36,7 @@ def section_page(section):
         query_id = list(request.args.keys())[0]
     except:
         query_id = ''
-    return f"OK {query_id}"
+    return query_id
     pages = json.load(open('pages.json'))['items']
     for page in pages:
         if str(page['id']) == str(section):
