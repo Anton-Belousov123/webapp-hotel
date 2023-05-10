@@ -10,18 +10,13 @@ application = Flask(__name__)
 
 @application.route('/', methods=['GET', 'POST'])
 def index_page():
-    try:
-        query_id = str(request.form.to_dict()['query_id'])
-    except:
-        query_id = ''
     info = json.load(open('pages.json'))
     return render_template('pages/main_page.html',
                            sections=info['items'],
                            heading=info['heading'],
                            title=info['title'],
                            page_image=info['image'],
-                           titles=info['items'],
-                           query_id=query_id)
+                           titles=info['items'])
 
 
 @application.route('/order', methods=['POST'])
