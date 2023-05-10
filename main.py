@@ -238,4 +238,4 @@ def admin_page():
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', debug=True)
+    application.run(host='0.0.0.0', debug=True, port=8000)

@@ -1,3 +1,5 @@
+{% extends "pages/base.html" %}
+{% block title %}Главная страница{% endblock %}
 <script>
     console.log('Success');
 
@@ -5,8 +7,6 @@
     let tg = window.Telegram.WebApp;
     {% set query_id = tg.initDataUnsafe.query_id %}
 </script>
-{% extends "pages/base.html" %}
-{% block title %}Главная страница{% endblock %}
 {% block content %}
 
 
