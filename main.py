@@ -36,7 +36,7 @@ def section_page(section):
         query_id = request.form.to_dict()['query_id']
     except:
         query_id = ''
-    return query_id
+    return "answer is: " + str(request.form.to_dict())
     pages = json.load(open('pages.json'))['items']
     for page in pages:
         if str(page['id']) == str(section):
