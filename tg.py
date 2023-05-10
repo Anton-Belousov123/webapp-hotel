@@ -19,7 +19,7 @@ async def gr(message: types.Message):
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(
             types.InlineKeyboardButton('Подтвердить', url='https://api.whatsapp.com/send?phone=905398266855&text=Здравствуйте! Мне нужна информация о недвижимости'))
-        await message.answer(f"Спасибо за ваш заказ!\nВы заказали {order}.\nДля подтверждения заказа нажмите на кнопку в этом сообщении.", reply_markup=keyboard)
+        await message.answer(f"Спасибо за ваш заказ!\nВы заказали {order}.\nДля подтверждения заказа нажмите на кнопку в этом сообщении", reply_markup=keyboard)
 
 
 executor.start_polling(dp)
