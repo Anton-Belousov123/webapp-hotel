@@ -1,6 +1,5 @@
 import random
 
-import requests
 import telebot
 from aiogram.types import InputMessageContent
 from telebot.types import InlineQueryResultArticle, InputTextMessageContent
