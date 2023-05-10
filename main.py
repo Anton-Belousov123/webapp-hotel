@@ -11,7 +11,7 @@ application = Flask(__name__)
 @application.route('/')
 def index_page():
     try:
-        query_id = list(request.args.keys())[0]
+        query_id = str(request.form.to_dict()['query_id'])
     except:
         query_id = ''
     info = json.load(open('pages.json'))
@@ -32,11 +32,7 @@ def order_handler():
 
 @application.route('/section/<section>', methods=['POST'])
 def section_page(section):
-    try:
-        query_id = request.form.to_dict()['query_id']
-    except:
-        query_id = ''
-    return "answer is: " + str(request.form.to_dict())
+    query_id = str(request.form.to_dict()['query_id'])
     pages = json.load(open('pages.json'))['items']
     for page in pages:
         if str(page['id']) == str(section):
@@ -49,12 +45,9 @@ def section_page(section):
                            title=title, page_image=image, titles=info['items'], query_id=query_id)
 
 
-@application.route('/service/<service>')
+@application.route('/service/<service>', methods=['POST'])
 def service_page(service):
-    try:
-        query_id = list(request.args.keys())[0]
-    except:
-        query_id = ''
+    query_id = str(request.form.to_dict()['query_id'])
     sections = json.load(open('sections.json'))
     for section in sections:
         if str(section['id']) == str(service):

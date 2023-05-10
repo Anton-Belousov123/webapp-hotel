@@ -7,7 +7,9 @@
     <br/>
     <div class="row">
         {% for service in services %}
-        <a href="/service/{{ service['id'] }}?{{query_id}}">
+        <form method="POST" action="/service/{{service['id']}}">
+            <input name="query_id" hidden="true" value="{{query_id}}">
+        <a href="#" onclick="document.getElementById('form{{section['id']}}').submit();">
             <div class="card flex-row mt-3 p-0">
                 <img style="width: 130px"
                      class="rounded float-left"
@@ -19,6 +21,7 @@
                 </div>
             </div>
         </a>
+            </form>
         {% endfor %}
     </div>
 </div>
