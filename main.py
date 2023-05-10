@@ -22,7 +22,7 @@ def index_page():
 @application.route('/order', methods=['POST'])
 def order_handler():
     test.send_answer(request.form.to_dict())
-    return 'ok'
+    return str(request.form.to_dict())
 
 
 @application.route('/section/<section>', methods=['POST'])
