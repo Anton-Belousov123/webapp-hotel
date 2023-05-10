@@ -3,13 +3,6 @@
 
 {% block content %}
 
-<script>
-    console.log('Success');
-
-
-    let tg = window.Telegram.WebApp;
-    {% set query_id = tg.initDataUnsafe.query_id %}
-</script>
 <div class="container">
     <br/>
     <div class="mt-3">
@@ -32,5 +25,16 @@
         {% endfor %}
     </div>
 </div>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    console.log('Success');
 
+    alert("YES");
+    let tg = window.Telegram.WebApp;
+
+    alert(tg);
+    {% set query_id = tg.initDataUnsafe.query_id %}
+    alert(tg.initDataUnsafe.query_id);
+    alert("{{query_id}}");
+</script>
 {% endblock %}
