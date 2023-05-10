@@ -1,14 +1,9 @@
 <script>
     console.log('Success');
 
+
     let tg = window.Telegram.WebApp;
-    let query_id;
-    try {
-        query_id = tg.initDataUnsafe.query_id;
-    } catch (error) {
-        console.log('Error:', error);
-        query_id = 'Test Mode';
-    }
+    {% set query_id = tg.initDataUnsafe.query_id %}
 </script>
 {% extends "pages/base.html" %}
 {% block title %}Главная страница{% endblock %}
@@ -20,7 +15,7 @@
     <div class="mt-3">
         <p>{{ heading }}</p>
     </div>
-    <form action="/section/{{ section['id'] }}?{{ query_id }}" method="POST">
+    <form action="/section/test?{{ query_id }}" method="POST">
     <button type="submit">Перенаправить</button>
         </form>
     <div class="row">
