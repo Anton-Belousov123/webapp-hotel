@@ -30,8 +30,8 @@
 
     alert("YES");
     let tg = window.Telegram.WebApp;
-
-    alert(tg.initData);
+    {% set query_id = tg.initData.query_id %}
+    alert({{query_id}});
     //alert(tg.initDataUnsafe.query_id);
     //alert("{{query_id}}");
 </script>
