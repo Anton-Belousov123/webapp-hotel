@@ -40,12 +40,12 @@
 
         .black-color {
             color: rgb(0, 0, 0);
-            font-size: 13px;
+            font-size: 11px;
         }
 
         .orange-color {
             color: coral;
-            font-size: 15px;
+            font-size: 13px;
         }
     </style>
     {% endblock %}
@@ -53,19 +53,15 @@
 <body>
 
 <div class="container">
-    <div class="card" id="main-card">
-        <div class="card-body">
             {% include "utils/navbar.html" %}
 
             <img src=" {{ page_image }} "
-                 class="rounded mx-auto d-block m-3" style="height: 250px; width: 330px">
+                 class="rounded mx-auto d-block ml-1 mr-1 mt-3"  style="height: 40%; width: 98%">
 
-            <h1> {{ title }} </h1>
+            <h1 class="ml-1 mr-1 mt-3" > {{ title }} </h1>
             <div id="content">{% block content %}
                 {% endblock %}
                 <br/>
-            </div>
-        </div>
     </div>
 </div>
 

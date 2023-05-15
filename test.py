@@ -1,14 +1,17 @@
 import random
 
+import requests
 import telebot
 from aiogram.types import InputMessageContent
 from telebot.types import InlineQueryResultArticle, InputTextMessageContent
+
 
 def send_answer(data):
     try:
         API_TOKEN = '5750853621:AAGifNbBkrsfjs-pddUmcSwmdyzTxaGSYXA'
         bot = telebot.TeleBot(API_TOKEN, parse_mode="HTML")
         text = f'Я хочу заказать {data["title"]} стоимостью {data["price"]}.'
+        requests.post()
         bot.answer_web_app_query(
             web_app_query_id=data['query_id'],
             result=InlineQueryResultArticle(
