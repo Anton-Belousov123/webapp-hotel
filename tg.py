@@ -26,12 +26,10 @@ async def start_command(message: types.Message):
 async def gr(message: types.Message):
     if 'Я хочу заказать ' in message.text:
         order = message.text.replace('Я хочу заказать ', '')
-
-        time.sleep(3)
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(
             types.InlineKeyboardButton('Подтвердить', url='https://api.whatsapp.com/send?phone=905398266855&text=Здравствуйте! Мне нужна информация о недвижимости'))
-        await message.answer(f"Спасибо за ваш заказ!\nДля подтверждения заказа нажмите на кнопку в этом сообщении", reply_markup=keyboard)
+        await message.answer(f"Спасибо за ваш заказ! ({order})", reply_markup=keyboard)
 
 
 executor.start_polling(dp)
