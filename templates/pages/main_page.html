@@ -16,7 +16,7 @@
         {% for section in sections %}
         <div class="col mt-3">
             <form id="form{{section['id']}}" action="/section/{{section['id']}}" method="POST">
-                <a href="#" onclick="document.getElementById('form{{section['id']}}').submit();">
+                <a style="text-decoration: none;" href="#" onclick="document.getElementById('form{{section['id']}}').submit();">
                     <div class="card">
                         <input name="query_id" hidden="true">
                         <img src="{{ section['image'] }}"

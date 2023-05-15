@@ -3,46 +3,7 @@
 
 
 
-<div class="modal fade" id="editMainModal{{ page['id'] }}" tabindex="-1"
-     aria-labelledby="editMainModal{{ page['id'] }}Label"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editMainModal{{ page['id'] }}Label">Редактировать карточку</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/admin">
-                    <input hidden="true" name="id" value="{{page['id']}}"></input>
-                    <input hidden="true" name="method" value="update-service"></input>
-                    <div class="mb-3">
-                        <label for="title{{ page['image'] }}" class="form-label">Ссылка на фото:</label>
-                        <input type="text" class="form-control" id="title{{ page['image'] }}" name="photo"
-                               value="{{ page['image'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title{{ page['name'] }}" class="form-label">Название:</label>
-                        <input type="text" class="form-control" id="title{{ page['name'] }}" name="name"
-                               value="{{ page['title'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title{{ page['price'] }}" class="form-label">Цена:</label>
-                        <input type="text" class="form-control" id="title{{ page['price'] }}" name="price"
-                               value="{{ page['price'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title{{ page['description'] }}" class="form-label">Описание:</label>
-                        <input type="text" class="form-control" id="title{{ page['description'] }}" name="description"
-                               value="{{ page['description'] }}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Обновить данные</button>
-                </form>
-            </div>
 
-        </div>
-    </div>
-</div>
 <!-- Модальное окно для удаления -->
 <div class="modal fade" id="deleteModal{{ page['id'] }}" tabindex="-1"
      aria-labelledby="deleteModal{{ page['id'] }}Label">

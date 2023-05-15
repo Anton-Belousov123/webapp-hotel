@@ -6,7 +6,7 @@ from telebot.types import InlineQueryResultArticle, InputTextMessageContent
 
 def send_answer(data):
     try:
-        API_TOKEN = '6215708830:AAGKSA7XfghK_TMBu3obT8-Vs7dbyk5Or2s'
+        API_TOKEN = '5750853621:AAGifNbBkrsfjs-pddUmcSwmdyzTxaGSYXA'
         bot = telebot.TeleBot(API_TOKEN, parse_mode="HTML")
         text = f'Я хочу заказать {data["title"]} стоимостью {data["price"]}.'
         bot.answer_web_app_query(

@@ -1,44 +1,5 @@
 {% block content %}
-<div class="modal fade" id="editMainModal{{ page['id'] }}" tabindex="-1"
-     aria-labelledby="editMainModal{{ page['id'] }}Label"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editMainModal{{ page['id'] }}Label">Редактировать карточку</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/admin">
-                    <input hidden="true" name="id" value="{{page['id']}}"></input>
-                    <input hidden="true" name="method" value="update-section"></input>
-                    <div class="mb-3">
-                        <label for="title{{ page['image'] }}" class="form-label">Ссылка на фото:</label>
-                        <input type="text" class="form-control" id="title{{ page['image'] }}" name="image"
-                               value="{{ page['image'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title{{ page['name'] }}" class="form-label">Название:</label>
-                        <input type="text" class="form-control" id="title{{ page['name'] }}" name="name"
-                               value="{{ page['title'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title{{ page['description'] }}" class="form-label">Описание:</label>
-                        <input type="text" class="form-control" id="title{{ page['description'] }}" name="description"
-                               value="{{ page['description'] }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text{{ page['worked_at'] }}" class="form-label">Работает:</label>
-                        <textarea class="form-control" id="text{{ page['worked_at'] }}" name="worked_at"
-                                  rows="3">{{ page['worked_at'] }}</textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Обновить данные</button>
-                </form>
-            </div>
 
-        </div>
-    </div>
-</div>
 <!-- Модальное окно для удаления -->
 <div class="modal fade" id="deleteModal{{ page['id'] }}" tabindex="-1"
      aria-labelledby="deleteModal{{ page['id'] }}Label">
@@ -68,47 +29,5 @@
 </div>
 
 
-<div class="modal fade" id="createMainModal" tabindex="-1"
-     aria-labelledby="createMainModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createMainModalLabel">Создать карточку</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input hidden="true" name="method" value="create-section"></input>
-
-                    <div class="mb-3">
-                        <label for="title123" class="form-label">Ссылка на фото:</label>
-                        <input type="text" class="form-control" id="title123" name="connected_with">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="title1" class="form-label">Ссылка на фото:</label>
-                        <input type="text" class="form-control" id="title1" name="photo">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title2" class="form-label">Название:</label>
-                        <input type="text" class="form-control" id="title2" name="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title4" class="form-label">Работает:</label>
-                        <input type="text" class="form-control" id="title4" name="worked_at">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text3" class="form-label">Описание:</label>
-                        <textarea class="form-control" id="text3" name="description"
-                                  rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Создать</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 import test
 from utils import is_html_file_exists
@@ -68,8 +68,18 @@ def admin_page():
             if args['page'] == 'main':
                 return render_template('admin/main.html', pages=info, main_page=main_page)
             elif args['page'] == 'section':
+                for jj in range(len(sections)):
+                    for i in info:
+                        if str(i['id']) == sections[jj]['connected_with']:
+                            sections[jj]['connected_with'] = i['title']
+                            break
                 return render_template('admin/section.html', pages=sections, titles=information)
             elif args['page'] == 'service':
+                for jj in range(len(services)):
+                    for i in sections:
+                        if str(i['id']) == services[jj]['connected_with']:
+                            services[jj]['connected_with'] = i['title']
+                            break
                 return render_template('admin/service.html', pages=services, sections=sections)
             else:
                 return render_template('utils/404.html')
@@ -88,7 +98,7 @@ def admin_page():
                 f.write(json.dumps(pg))
             f.close()
             info = json.load(open('pages.json'))['items']
-            return render_template('admin/main.html', pages=info, main_page=main_page)
+            return redirect('/admin?page=main')
 
         if data['method'] == 'create-page':
             s = request.form.to_dict()
@@ -99,7 +109,7 @@ def admin_page():
                 f.write(json.dumps(pg))
             f.close()
             info = json.load(open('pages.json'))['items']
-            return render_template('admin/main.html', pages=info, main_page=main_page)
+            return redirect('/admin?page=main')
 
         if data['method'] == 'editmainpage-page':
             s = request.form.to_dict()
@@ -114,7 +124,7 @@ def admin_page():
             info = information['items']
             main_page = {'title_at_open': information['heading'], 'title': information['title'],
                          'image': information['image']}
-            return render_template('admin/main.html', pages=info, main_page=main_page)
+            return redirect('/admin?page=main')
 
         if data['method'] == 'update-page':
             pg = json.load(open('pages.json'))
@@ -130,12 +140,13 @@ def admin_page():
                 f.write(json.dumps(pg))
             f.close()
             info = json.load(open('pages.json'))['items']
-            return render_template('admin/main.html', pages=info, main_page=main_page)
+            return redirect('/admin?page=main')
 
         if data['method'] == 'update-section':
             c = json.load(open('sections.json'))
             for i in range(len(c)):
                 if str(c[i]['id']) == str(data['id']):
+                    c[i]['connected_with'] = data['connected_with_edit']
                     c[i]['id'] = data['id']
                     c[i]['image'] = data['image']
                     c[i]['title'] = data['name']
@@ -146,12 +157,13 @@ def admin_page():
                 f.write(json.dumps(c))
             f.close()
             info = json.load(open('sections.json'))
-            return render_template('admin/section.html', pages=sections, titles=information)
+            return redirect('/admin?page=section')
 
         if data['method'] == 'update-service':
             c = json.load(open('services.json'))
             for i in range(len(c)):
                 if str(c[i]['id']) == str(data['id']):
+                    c[i]['connected_with'] = data['connected_with_edit']
                     c[i]['id'] = data['id']
                     c[i]['image'] = data['photo']
                     c[i]['title'] = data['name']
@@ -162,7 +174,7 @@ def admin_page():
                 f.write(json.dumps(c))
             f.close()
             info = json.load(open('services.json'))
-            return render_template('admin/service.html', pages=info, sections=sections)
+            return redirect('/admin?page=service')
 
         if data['method'] == 'create-section':
             s = request.form.to_dict()
@@ -179,7 +191,7 @@ def admin_page():
                 f.write(json.dumps(pg))
             f.close()
             info = json.load(open('sections.json'))
-            return render_template('admin/section.html', pages=sections, titles=information)
+            return redirect('/admin?page=section')
 
         if data['method'] == 'create-service':
             s = request.form.to_dict()
@@ -197,7 +209,7 @@ def admin_page():
                 f.write(json.dumps(pg))
             f.close()
             info = json.load(open('services.json'))
-            return render_template('admin/service.html', pages=info, sections=sections)
+            return redirect('/admin?page=service')
 
         if data['method'] == 'delete-section':
             print('I erergergerge')
@@ -210,7 +222,7 @@ def admin_page():
                 f.write(json.dumps(new_pg))
             f.close()
             info = json.load(open('sections.json'))
-            return render_template('admin/section.html', pages=sections, titles=information)
+            return redirect('/admin?page=section')
 
         if data['method'] == 'delete-service':
             pg = json.load(open('services.json'))
@@ -222,7 +234,7 @@ def admin_page():
                 f.write(json.dumps(new_pg))
             f.close()
             info = json.load(open('services.json'))
-            return render_template('admin/service.html', pages=info, sections=sections)
+            return redirect('/admin?page=service')
 
 
 if __name__ == '__main__':

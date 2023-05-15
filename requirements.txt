@@ -21,6 +21,9 @@ MarkupSafe==2.1.2
 multidict==6.0.4
 pycparser==2.21
 pyOpenSSL==23.1.1
+pyTelegramBotAPI==4.11.0
 pytz==2023.3
+requests==2.30.0
+urllib3==2.0.2
 Werkzeug==2.3.3
 yarl==1.9.2

@@ -4,8 +4,8 @@
 <div class="container d-flex justify-content-center">
     <h1 class="display-5 m-4">
         <a class="card" href="/admin" style="text-decoration: none;">
-        <mark>Управление страницей сервисов</mark>
-            </a>
+            <mark>Управление страницей сервисов</mark>
+        </a>
     </h1>
 </div>
 <div class="container">
@@ -14,7 +14,9 @@
             <div class="card mt-3 mb-4">
                 <img src="https://gillde.com/wp-content/uploads/2022/06/29-1160x870.webp" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title"><mark>Cоздать новую</mark></h5>
+                    <h5 class="card-title">
+                        <mark>Cоздать новую</mark>
+                    </h5>
                     <p class="card-text">Создание новой карточки</p>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
@@ -30,10 +32,13 @@
             <div class="card mt-3 mb-4">
                 <img src="{{ page['image'] }}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title"><mark>{{page['title']}}</mark></h5>
+                    <h5 class="card-title">
+                        <mark>{{page['title']}}</mark>
+                    </h5>
                     <p class="card-text">
-                        <p>{{ page['price'] }}</p>
-                        <p>{{ page['description'] }}</p>
+                    <p>{{ page['price'] }}</p>
+                    <p>{{ page['description'] }}</p>
+                    <p>Привязан к: {{ page['connected_with'] }}</p>
                     </p>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal"
@@ -48,53 +53,102 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="editMainModal{{ page['id'] }}" tabindex="-1"
+             aria-labelledby="editMainModal{{ page['id'] }}Label"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editMainModal{{ page['id'] }}Label">Редактировать карточку</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/admin">
+                            <input hidden="true" name="id" value="{{page['id']}}"></input>
+                            <input hidden="true" name="method" value="update-service"></input>
+                            <div class="mb-3">
+                                <label for="title2345" class="form-label">Привязать к:</label>
+                                <select id="title2345" name="connected_with_edit" class="form-select">
+                                    {% for i in sections %}
+                                    <option value="{{i['id']}}">{{i['title']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="title{{ page['image'] }}" class="form-label">Ссылка на фото:</label>
+                                <input type="text" class="form-control" id="title{{ page['image'] }}" name="photo"
+                                       value="{{ page['image'] }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title{{ page['name'] }}" class="form-label">Название:</label>
+                                <input type="text" class="form-control" id="title{{ page['name'] }}" name="name"
+                                       value="{{ page['title'] }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title{{ page['price'] }}" class="form-label">Цена:</label>
+                                <input type="text" class="form-control" id="title{{ page['price'] }}" name="price"
+                                       value="{{ page['price'] }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title{{ page['description'] }}" class="form-label">Описание:</label>
+                                <input type="text" class="form-control" id="title{{ page['description'] }}"
+                                       name="description"
+                                       value="{{ page['description'] }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Обновить данные</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         {% include "modals_service.html" %}
         <!-- Редактирование -->
         {% endfor %}
         <div class="modal fade" id="createMainModal" tabindex="-1"
-     aria-labelledby="createMainModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createMainModalLabel">Создать карточку</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/admin">
-                    <input hidden="true" name="method" value="create-service"></input>
-                    <div class="mb-3">
-                        <label for="title123" class="form-label">Привязать к:</label>
-                        <select id="title123" name="connected_with" class="form-select">
-                            {% for i in sections %}
-                                <option value ="{{i['id']}}">{{i['title']}}</option>
-                            {% endfor %}
-            </select>
+             aria-labelledby="createMainModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createMainModalLabel">Создать карточку</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3">
-                        <label for="title1" class="form-label">Ссылка на фото:</label>
-                        <input type="text" class="form-control" id="title1" name="photo">
+                    <div class="modal-body">
+                        <form method="post" action="/admin">
+                            <input hidden="true" name="method" value="create-service"></input>
+                            <div class="mb-3">
+                                <label for="title123" class="form-label">Привязать к:</label>
+                                <select id="title123" name="connected_with" class="form-select">
+                                    {% for i in sections %}
+                                    <option value="{{i['id']}}">{{i['title']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="title1" class="form-label">Ссылка на фото:</label>
+                                <input type="text" class="form-control" id="title1" name="photo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title2" class="form-label">Название:</label>
+                                <input type="text" class="form-control" id="title2" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="title222" class="form-label">Цена:</label>
+                                <input type="text" class="form-control" id="title222" name="price">
+                            </div>
+                            <div class="mb-3">
+                                <label for="text3" class="form-label">Описание:</label>
+                                <textarea class="form-control" id="text3" name="description"
+                                          rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Создать</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="title2" class="form-label">Название:</label>
-                        <input type="text" class="form-control" id="title2" name="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="title222" class="form-label">Цена:</label>
-                        <input type="text" class="form-control" id="title222" name="price">
-                    </div>
-                    <div class="mb-3">
-                        <label for="text3" class="form-label">Описание:</label>
-                        <textarea class="form-control" id="text3" name="description"
-                                  rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Создать</button>
-                </form>
-            </div>
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
     </div>
     {% endblock %}
 </div>

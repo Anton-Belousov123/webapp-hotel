@@ -9,9 +9,9 @@
         {% for service in services %}
         <form method="POST" action="/service/{{service['id']}}" id="form{{service['id']}}">
             <input name="query_id" hidden="true" value="{{query_id}}">
-        <a href="#" onclick="document.getElementById('form{{service['id']}}').submit();">
+        <a style="text-decoration: none;" href="#" onclick="document.getElementById('form{{service['id']}}').submit();">
             <div class="card flex-row mt-3 p-0">
-                <img style="width: 130px"
+                <img style="width: 130px; height: 120px; "
                      class="rounded float-left"
                      src="{{ service['image'] }}"/>
                 <div class="card-body">
