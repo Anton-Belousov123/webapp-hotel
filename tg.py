@@ -24,7 +24,7 @@ async def gr(message: types.Message):
         print(message)
         print(order)
         amo.make_order(f"{message.from_user.username} {message.from_user.first_name} {message.from_user.last_name}",
-                       order)
+                       order, message.chat.id)
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(
             types.InlineKeyboardButton('Подтвердить',
