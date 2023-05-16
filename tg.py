@@ -3,6 +3,8 @@ import amo
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types.web_app_info import WebAppInfo
 
+import ggl
+
 bot = Bot(token='5750853621:AAGifNbBkrsfjs-pddUmcSwmdyzTxaGSYXA')
 
 dp = Dispatcher(bot)
@@ -30,7 +32,7 @@ async def gr(message: types.Message):
         amo.make_order(f"{message.from_user.username} {message.from_user.first_name} {message.from_user.last_name}", order)
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(
-            types.InlineKeyboardButton('Подтвердить', url='https://api.whatsapp.com/send?phone=905398266855&text=Здравствуйте! Мне нужна информация о недвижимости'))
+            types.InlineKeyboardButton('Подтвердить', url=f'https://api.whatsapp.com/send?phone={ggl.read_message_preview().replace("!order!", order)}'))
         await message.answer(f"Спасибо за ваш заказ! ({order})", reply_markup=keyboard)
 
 
