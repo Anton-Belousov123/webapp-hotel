@@ -13,7 +13,7 @@ def auth():
 def read_message_preview():
     sheet = client.open('ЧАТ').sheet1
     print(sheet)
-    rules = sheet.cell(11, 2).value
+    rules = sheet.cell(17, 2).value
     print(rules)
     return rules
 
