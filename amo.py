@@ -100,6 +100,6 @@ def make_order(name, order, tg_id):
         headers = {'X-Auth-Token': token}
         account_chat_id = '7eb31c63-e74d-41cd-86f7-34c6265386f9'
         url = f'https://amojo.amocrm.ru/v1/chats/{account_chat_id}/' \
-              f'{db[tg_id]}/messages?with_video=true&stand=v15'
+              f'{db[str(tg_id)]}/messages?with_video=true&stand=v15'
         resp = requests.post(url, headers=headers, data=json.dumps({"text": order}))
 
