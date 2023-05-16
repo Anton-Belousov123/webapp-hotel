@@ -1,5 +1,5 @@
 import time
-
+import amo
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types.web_app_info import WebAppInfo
 
@@ -26,6 +26,8 @@ async def start_command(message: types.Message):
 async def gr(message: types.Message):
     if 'Я хочу заказать ' in message.text:
         order = message.text.replace('Я хочу заказать ', '')
+        print(message)
+        amo.make_order(f"{message.from_user.username} {message.from_user.first_name} {message.from_user.last_name}")
         keyboard = types.InlineKeyboardMarkup()
         keyboard.add(
             types.InlineKeyboardButton('Подтвердить', url='https://api.whatsapp.com/send?phone=905398266855&text=Здравствуйте! Мне нужна информация о недвижимости'))
