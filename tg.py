@@ -14,7 +14,7 @@ dp = Dispatcher(bot)
 async def start_command(message: types.Message):
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton('Открыть веб страницу', web_app=WebAppInfo(url='https://hotel-bot.site/')))
-    await message.answer('Открыть WebApp!', reply_markup=keyboard)
+    await message.answer(ggl.read_start_message(), reply_markup=keyboard)
 
 
 @dp.message_handler()
